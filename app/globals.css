@@ -1,27 +1,945 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+* {
+  @apply m-0 p-0 box-border tracking-wider;
+  font-family: "Manrope", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+h1 {
+  @apply font-normal text-7xl;
+  line-height: 5rem;
+}
+
+h2 {
+  @apply font-light	text-4xl;
+  line-height: 2.711rem;
+}
+
+h3 {
+  @apply font-light;
+  font-size: 2rem;
+  line-height: 2.313rem;
+}
+
+h4 {
+  @apply font-light;
+  font-size: 1.375rem;
+  line-height: 1.657rem;
+}
+
+h5 {
+  @apply font-normal uppercase text-base;
+  line-height: 1.205rem;
+}
+
+h6 {
+  @apply font-light	uppercase;
+  font-size: 0.75rem;
+  line-height: 0.904rem;
+}
+
+.card-para {
+  font-size: 0.938rem;
+  color: #878787;
+  letter-spacing: 1px;
+  transition: all 0.4s ease-in-out;
+}
+
+.main-para {
+  font-size: 1.25rem;
+  color: #515151;
+}
+
+a {
+  font-size: 0.85rem;
+}
+
+.tfcBtnone {
+  @apply inline-flex	flex-row items-center justify-center text-white bg-black;
+  padding: 14px 40px;
+  gap: 5px;
+  font-size: 0.875rem;
+  border: 0.5px solid black;
+  border-radius: 1.875rem;
+}
+
+.tfcBtntwo {
+  @apply inline-flex	flex-row items-center justify-center bg-white	text-black;
+  padding: 14px 40px;
+  gap: 5px;
+  font-size: 0.875;
+  border: 0.5px solid black;
+  border-radius: 1.875rem;
+}
+
+/* Common classes start*/
+.tfc_btn {
+  @apply border-solid rounded-full;
+}
+
+.tfc_container {
+  @apply max-w-[1366px] mx-auto px-7;
+}
+
+.tfc_section_title {
+  @apply border-b pb-3 mx-20  border-black border-solid;
+}
+
+.tfc_section_title h2 {
+  @apply sm:text-[20px] text-[24px];
+}
+
+.tfc_title_main {
+  @apply pt-5;
+}
+
+.tfc_title_main h1 {
+  @apply text-[36px];
+}
+.bg_mildorange {
+  background-color: #f8ede3;
+}
+.bg_mildgrey {
+  background-color: #f8f8f8;
+}
+.bg_mildemb {
+  background-color: #f1f6f5;
+}
+.bg_mildblue {
+  background-color: #f1f5f9;
+}
+.bg_mildyellow {
+  background-color: #fffae7;
+}
+/* Common classes End*/
+
+/* Header css Start*/
+.header_inner {
+  @apply flex py-3 justify-between items-center border-b;
+}
+
+.header_menu ul li {
+  @apply px-4;
+}
+
+.header_inner .toggle {
+  position: absolute;
+  width: 2rem;
+  height: 1.4rem;
+  top: 2rem;
+  right: 4rem;
+  z-index: 999;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.header_inner .toggle .toggle-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0;
+  width: 1.6rem;
+  height: 2px;
+  background: #212121;
+  transition: all 0.3s ease-in-out;
+}
+.header_inner .toggle .toggle-btn::before {
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  width: 2rem;
+  height: 2px;
+  background: #212121;
+  transition: all 0.3s ease-in-out;
+}
+.header_inner .toggle .toggle-btn::after {
+  content: "";
+  position: absolute;
+  top: 0.5rem;
+  width: 1.2rem;
+  height: 2px;
+  background: #212121;
+  transition: all 0.3s ease-in-out;
+}
+
+.header_inner.openMenu .toggle .toggle-btn {
+  transform: rotate(720deg);
+  background: transparent;
+}
+.header_inner.openMenu .toggle .toggle-btn::before {
+  transform: rotate(45deg) translate(5px, 8px);
+}
+.header_inner.openMenu .toggle .toggle-btn::after {
+  width: 2rem;
+  transform: rotate(-45deg) translate(3px, -6px);
+}
+
+.getstarted {
+  @apply w-[176px] h-[55px] rounded-lg  border py-3 px-10;
+}
+
+/* Header css End*/
+
+/* services flyout */
+/* Add these styles to your CSS file */
+.services-flyout {
+  position: fixed;
+  top: -300px;
+  left: 0vw;
+  width: 100vw;
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+  border: 1px solid #333;
+  z-index: 999;
+  transition: top 1s ease;
+}
+
+.services-flyout.slide-down {
+  top: 100px;
+  transition: top 1s ease;
+}
+
+.services-flyout.slide-up {
+  top: -100%;
+  transition: top 1s ease;
+}
+
+.services-flyout-content {
+  display: flex;
+  flex-direction: column; /* Display items in columns */
+  justify-content: space-between;
+  //max-width: 900px;
+  width: 100%;
+  padding: 20px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.service-item {
+  flex-basis: calc(25% - 10px);
+  background-color: black;
+  padding: 15px;
+  text-align: left;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* START: Hero styles */
+.hero {
+  @apply min-h-screen;
+}
+.hero_inner {
+  @apply flex lg:flex-row flex-col gap-5 relative z-0;
+}
+
+.hero__title {
+  @apply 2xl:text-[62px] sm:text-[52px] text-[42px] font-normal;
+}
+
+.hero__title {
+  line-height: 75px;
+}
+
+.hero__subtitle {
+  @apply text-[27px] text-black-100 font-light mt-5 mb-5;
+}
+
+.hero__image-container {
+  @apply xl:basis-[45%] flex justify-end items-end w-full;
+}
+
+.hero__image {
+  @apply relative xl:w-full w-[90%] xl:h-full h-[590px] z-0;
+}
+
+.hero__image {
+  height: calc(100vh - 150px);
+  /* height: 90vh; */
+}
+
+/* END: Hero styles */
+
+/** Services Css start**/
+
+.tfc_service_items {
+  @apply grid md:grid-cols-3 grid-cols-1 gap-4;
+}
+
+.service {
+  background-color: #f1f6f5;
+}
+
+.tfc_item_service {
+  @apply min-h-[25rem];
+}
+
+.tfc_item_service h1 {
+  @apply text-[36px] pb-6 leading-10 pt-8;
+}
+
+.tfc_block_left {
+  background-color: #f1f6f5;
+}
+.tfc_block_left .absolute {
+  bottom: 50px;
+}
+
+.tfc_block_left .absolute {
+  bottom: 50px;
+}
+
+.tfc_item_service p {
+  color: #878787;
+}
+.tfc_item_service a {
+  @apply absolute font-light;
+  bottom: 50px;
+  font-size: 20px;
+}
+.tfc_item_service a i {
+  @apply relative;
+  top: 2px;
+  left: 20px;
+}
+
+.tfc_block_right {
+  @apply bg-cover	bg-no-repeat;
+  transition: 0.3s ease-in-out;
+}
+.tfc_block_right .tfc_item_service {
+  @apply cursor-pointer;
+  transition: all 0.3s ease-in-out;
+
+}
+.tfc_block_right .tfc_item_service:hover {
+  background: transparent;
+  transition: all 0.3s ease-in-out;
+}
+.tfc_block_right .tfc_item_service {
+  transition: 0.3s ease-in-out;
+}
+
+.tfc_block_right .tfc_item_service:hover h1,
+.tfc_block_right .tfc_item_service:hover p,
+.tfc_block_right .tfc_item_service:hover a,
+.tfc_block_right .tfc_item_service:hover i {
+  @apply text-white;
+  transition: all 0.4s ease-in-out;
+}
+
+.tfc_block_right .swiper-button-prev {
+  @apply absolute rounded-full;
+  bottom: 0 !important;
+  top: auto;
+  left: 40%;
+  border: 1px solid #000;
+  height: 35px;
+  width: 35px;
+}
+
+.tfc_block_right .swiper-button-prev::after {
+  font-size: 18px;
+}
+
+.tfc_block_right .swiper-button-next::after {
+  font-size: 18px;
+}
+
+.tfc_block_right .swiper-button-next {
+  @apply absolute rounded-full;
+  bottom: 0 !important;
+  top: auto;
+  right: 40%;
+  border: 1px solid #000;
+  height: 35px;
+  width: 35px;
+}
+
+.tfc_block_right .swiper-wrapper {
+  padding-bottom: 50px;
+}
+.tfc_block_right .swiper-wrapper .swiper-slide {
+  background-color: #f1f5f9;
+}
+
+/** Services Css End**/
+
+/** Services Css End**/
+
+/** POrtfolio css start **/
+.tfc_portfolio_items {
+  @apply mt-6 grid md:grid-cols-[2fr,3fr] grid-cols-1 gap-6;
+}
+.tfc_portfolio_items .tfc_item .image-cover {
+  @apply overflow-hidden;
+
+  margin: auto;
+  height: 41.313rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.tfc_portfolio_items .tfc_item .image-cover .content {
+  @apply bg-white	w-full h-0	invisible	absolute;
+  transition: all 0.4s ease;
+  bottom: 0;
+}
+
+.tfc_portfolio_items .tfc_item .image-cover img {
+  @apply w-full;
+}
+
+.tfc_portfolio_items .tfc_item:hover .content {
+  @apply visible bg-white h-36;
+}
+
+.tfc_portfolio_items .tfc_item .image-cover {
+  margin: auto;
+}
+
+.tfc_portfolio_items .tfc_item .image-cover .content h3 {
+}
+.tfc_portfolio_items .tfc_item .image-cover .content .main-para {
+  line-height: 1.5rem;
+  margin-bottom: 1.4rem;
+  color: #878787;
+}
+
+.tfc_portfolio_items .tfc_item .image-cover .content .simple-btn {
+  background: transparent;
+  border: 0.5px solid rgb(138, 138, 138);
+  color: rgb(138, 138, 138);
+  border-radius: 10rem;
+  padding: 0.3rem 0.8rem;
+  margin: 0 5px;
+}
+.tfc_portfolio_items .tfc_item .image-cover .content .simple-btn:hover {
+  background: #000;
+  color: #fff;
+}
+
+/****************** POrtfolio css End ********************/
+
+/****************** Our value css start *******************/
+
+.tfc_ourvalue_items {
+  @apply mt-6 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-3;
+}
+
+.tfc_valueColumn {
+  @apply flex flex-col justify-between p-12 h-80;
+}
+
+.tfc_valueTextColumn {
+  @apply flex flex-col justify-between pb-12 pt-12;
+}
+
+.tfc_valueLineColumn {
+  @apply flex flex-col justify-between;
+}
+
+.tfc_valueColumn h6 {
+  color: #909090;
+  margin-bottom: 1.3rem;
+  letter-spacing: 1px;
+}
+.tfc_valueColumn h4 {
+  font-size: 1.375rem;
+  line-height: 1.657rem;
+}
+.tfc_valueColumn button {
+}
+
+.tfc_ourvalue_block_2 h1 {
+  @apply font-light;
+  font-size: 2.25rem;
+  line-height: 2.711rem;
+}
+
+.tfc_ourvalue_block_2 p {
+  font-size: 0.98rem;
+  color: #878787;
+  letter-spacing: 1px;
+  transition: all 0.4s ease-in-out;
+}
+
+,
+tfc_valueLineColumn hr {
+  color: black;
+}
+
+/******         Our value css Ens            ******/
+
+/******          Our team css start          ******/
+
+.tfc_ourteam_group {
+  @apply grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3;
+}
+.sectionAll .team-image {
+  @apply relative;
+}
+
+.sectionAll .team-image > img {
+  @apply relative block w-full;
+}
+
+.sectionAll .team-image .occupation {
+  @apply flex items-center justify-between;
+  padding: 1.4rem 0.2rem;
+}
+.sectionAll .team-image .occupation p {
+  color: #878787;
+}
+.sectionAll .team-image .occupation button {
+  background: transparent;
+  border: 0.5px solid rgb(138, 138, 138);
+  color: rgb(138, 138, 138);
+  border-radius: 10rem;
+  padding: 0.3rem 0.8rem;
+}
+.sectionAll .team-image .flex-row {
+  @apply flex absolute justify-center	w-full;
+  top: 85%;
+  opacity: 0;
+  gap: 0;
+  transition: all 0.3s ease;
+}
+
+.sectionAll .team-image .circle {
+  @apply flex items-center;
+  height: 2rem;
+  width: 2rem;
+  background: #f8f8f8;
+  padding: 7px;
+  border-radius: 50%;
+}
+
+.sectionAll .team-image .circle img {
+  display: block;
+  width: 100%;
+}
+
+.sectionAll .team-image:hover .social-icons .flex-row {
+  opacity: 1;
+  gap: 0.5rem;
+  top: 80%;
+}
+
+.sectionOne {
+  background: #fffae7;
+  padding: 2rem 2.3rem;
+}
+.sectionOne h6 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  line-height: 0.904rem;
+}
+.sectionOne h3 {
+  font-size: 1.7rem;
+  margin: 1rem 0 1.3rem 0;
+  line-height: 2.313rem;
+}
+.sectionOne p {
+  font-size: 0.938rem;
+  color: #878787;
+  letter-spacing: 1px;
+  transition: all 0.4s ease-in-out;
+}
+.sectionOne a {
+  @apply flex items-center justify-center	text-white bg-black flex-row;
+  padding: 14px 40px;
+  gap: 5px;
+  font-size: 0.875;
+  border: 0.5px solid black;
+  border-radius: 1.875rem;
+  transition: all 0.3s ease-in-out;
+  margin-top: 3.5rem;
+}
+/******          Our team css End          ******/
+
+.tfc_blogs_group {
+  @apply grid grid-cols-3  gap-6 bg-cover	bg-no-repeat;
+  transition: all 0.3s ease;
+}
+
+.tfc_blogs_group .card-content {
+  @apply h-full	w-full lg:py-16 lg:px-12 md:py-10 md:px-8 sm:py-8 sm:px-6;
+  transition: all 0.5s ease;
+}
+
+.tfc_blogs_group .card-content p {
+  font-size: 0.938rem;
+  color: #878787;
+  letter-spacing: 1px;
+  transition: all 0.4s ease-in-out;
+  margin-bottom: 1rem;
+}
+.tfc_blogs_group .card-content h4 {
+  line-height: 1.9rem;
+}
+.tfc_blogs_group .card-content .simple-btn {
+  background: transparent;
+  border: 0.5px solid rgb(138, 138, 138);
+  color: rgb(138, 138, 138);
+  border-radius: 10rem;
+  padding: 0.3rem 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.blogItem:hover .card-content {
+  @apply text-white;
+  background: transparent;
+}
+.blogItem:hover .card-content p {
+  @apply text-white;
+}
+.blogItem:hover .card-content button {
+  @apply text-white;
+  transform: translate(0%, -300%);
+  background: transparent;
+  border: 0.5px solid #fff;
+}
+
+.tfc_contact_group {
+  @apply grid md:grid-cols-[1fr,3fr] px-6 md:px-0 gap-6;
+}
+.tfc_contact_group p {
+  text-transform: uppercase;
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  color: #878787;
+}
+.contactDetail h2 {
+  font-size: 3rem;
+  line-height: 4rem;
+  letter-spacing: 2px;
+}
+.contactDetail p {
+  margin: 2rem 0 5rem 0;
+  color: #878787;
+  font-size: 1.25rem;
+}
+.contactDetail button {
+  @apply flex items-center justify-center	text-white bg-black;
+  flex-direction: row;
+  padding: 14px 40px;
+  gap: 5px;
+  font-size: 0.875;
+  border: 0.5px solid black;
+  border-radius: 1.875rem;
+}
+
+/***** Footer css start *****/
+
+.tfc_footer_section .tfc_contact {
+  @apply grid grid-cols-4  gap-3;
+}
+
+.footerlogo img {
+  height: 2.5rem;
+  width: 13rem;
+}
+
+.tfc_contact .social-links ul {
+  gap: 1.5rem;
+  padding: 4rem 0 2.5rem 1rem;
+}
+
+.tfc_contact .social-links ul li > a > img {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.tfc_contact .footerCol2 {
+  padding-top: 0.3rem;
+}
+
+.tfc_contact .footerCol2 h4 {
+  font-size: 1.375rem;
+  line-height: 1.657rem;
+}
+
+.tfc_contact .footerCol2 hr {
+  margin: 1.5rem 0 0rem 0;
+}
+
+.tfc_contact .footerCol2 ul {
+  padding-top: 3rem;
+}
+.tfc_contact .footerCol2 ul li {
+  padding-bottom: 1.2rem;
+}
+.animated-link {
+  @apply text-black relative no-underline;
+}
+
+.tfc_contact .chat {
+  @apply flex;
+  gap: 1rem;
+  padding: 0.8rem;
+}
+
+.footerBottom {
+  border-top: 1px solid #878787;
+}
+.footerBottom cite {
+  @apply flex justify-between;
+}
+
+.footerBottom ul {
+  @apply flex;
+  gap: 2rem;
+}
+
+/***** Footer css end *****/
+
+/******************** About page css start***************************/
+.imageContent .content h5 {
+  @apply uppercase;
+  font-size: 1rem;
+  line-height: 1.205rem;
+  color: #878787;
+}
+.imageContent .content h1 {
+  font-size: 4.5rem;
+  line-height: 5rem;
+  margin: 2rem 0;
+}
+.imageContent .content p {
+  color: #878787;
+  font-size: 1.25rem;
+}
+
+.tfc_about_section .tfc_valueColumn h2 span {
+  @apply block font-light	uppercase;
+  color: #909090;
+  margin-bottom: 1.3rem;
+  letter-spacing: 1px;
+  font-size: 0.75rem;
+  line-height: 0.904rem;
+}
+/******************** About page css end***************************/
+
+/******************** Blog page css start*************************/
+
+.blogContent p {
+  color: #878787;
+}
+.blogContent h1 {
+  margin: 2.5rem 0;
+  font-size: 4rem;
+  line-height: 4.5rem;
+}
+
+.blog_items .items .details {
+  @apply flex items-center items-baseline;
+  padding: 1.2rem 0 1rem 0;
+}
+
+.blog_items .items .details button {
+  background: transparent;
+  border: 0.5px solid rgb(138, 138, 138);
+  color: rgb(138, 138, 138);
+  border-radius: 10rem;
+  padding: 0.3rem 0.8rem;
+  font-size: 14px;
+  margin-left: 1rem;
+}
+
+/******************** Blog page css End***************************/
+
+/******************* Work page css start *************************/
+
+.workList .work-card .head {
+  @apply flex items-center justify-between py-4;
+}
+
+.workList .work-card .figureWork img {
+  @apply object-cover object-center	w-full;
+  height: 100vh;
+}
+
+/******************** Work page css End **************************/
+
+/******************** Contact Page css Start *********************/
+
+.formContent p {
+  @apply mb-8;
+}
+
+.formContent input[type="text"],
+.formContent input[type="email"] {
+  @apply border-b border-black mx-2 focus-visible:outline-none text-center;
+}
+.formContent input[type="checkbox"] {
+  @apply mr-4;
+}
+.formContent .tfcBtnone {
+  @apply py-3 px-16;
+}
+
+.formContent .accordionItem {
+  border-bottom: 1px solid gainsboro;
+  padding: 0.5rem 0;
+}
+.formContent .accordionTitle {
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0;
+  display: flex;
+}
+
+.formContent .accordionTitle .circle {
+  height: 3rem;
+  width: 3rem;
+  border: 1px solid gray;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.accordionContent {
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 0;
+}
+.open .accordionContent {
+  display: block;
+  opacity: 1;
+  height: 3rem;
+}
+
+/******************** Contact Page css End   *********************/
+
+/********************** Career Page css start ********************/
+
+.career-paths {
+}
+.career-paths .career-btns {
+  margin: 3rem 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.career-paths .career-btns .career-btn {
+  background: transparent;
+  border: 0.5px solid rgb(138, 138, 138);
+  color: rgb(138, 138, 138);
+  border-radius: 10rem;
+  padding: 0.3rem 0.8rem;
+}
+.career-paths .career-btns .career-btn:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.career-cards .grid-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+.career-cards .grid-row .card {
+  padding: 3rem;
+}
+.career-cards .grid-row .card h3 {
+  margin: 1rem 0;
+}
+.career-cards .tfcBtnone {
+  padding: 10px 30px;
+}
+.career-cards .card-para {
+  margin-bottom: 25px;
+}
+
+/********************** Career Page css End ********************/
+
+/******************** Services Page css start ******************/
+
+.tfcservices .service-grid-row {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 4rem;
+}
+
+.tfcservices .service-grid-row .column1 .col1 {
+  padding: 3rem;
+}
+.tfcservices .service-grid-row .column1 .col1 .tfcBtnone {
+  padding: 10px 30px;
+  margin-top: 15px;
+}
+.tfcservices .column2 h2 {
+  margin: 2rem 0;
+}
+
+.tfcservices .column2 .disc-table {
+  grid-template-columns: 1fr 4fr;
+  gap: 2rem;
+  margin: 4rem 0;
+  display: grid;
+}
+.tfcservices .column2 .disc-table .disc-table-left {
+  padding: 0.5rem 0 0 0;
+}
+
+/******************** Services Page css End ********************/
+
+@media only screen and (max-width: 1023px) {
+  .header_inner .header_menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    opacity: 1;
+    visibility: hidden;
+    z-index: 99;
+  }
+  .header_inner.openMenu .header_menu {
+    visibility: visible;
+    display: block;
+  }
+
+  .header_inner .header_menu ul {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    list-style: none;
+    list-style-type: none;
+    padding-right: 1rem;
+    background: #ffffff;
+    transform: translateY(-100%);
+    transition: all 0.3s ease-in-out;
+  }
+  .header_inner .header_menu ul li a {
+    font-size: 18px;
+    margin: 10px 0;
+    display: inline-block;
+  }
+  .header_inner.openMenu .header_menu ul {
+    transform: translateY(0);
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.hover-effect {
+  transition: transform 0.3s, box-shadow 0.3s;
+  transform: translate(-2px, -2px); /* Lift up and left slightly */
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
 }
+
+/*** 900 ***/
